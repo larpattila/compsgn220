@@ -21,7 +21,7 @@ class MyDataset(Dataset):
                  data_dir: Union[str, Path],
                  data_parent_dir: Optional[str] = '',
                  key_features: Optional[str] = 'features',
-                 key_class: Optional[str] = 'class',
+                 key_class: Optional[str] = 'labels',
                  load_into_memory: Optional[bool] = True) \
             -> None:
         """An example of an object of class torch.utils.data.Dataset
@@ -35,7 +35,7 @@ class MyDataset(Dataset):
                              defaults to `features`.
         :type key_features: str
         :param key_class: Key to use for getting the class, defaults\
-                          to `class`.
+                          to `labels`.
         :type key_class: str
         :param load_into_memory: Load the data into memory? Default to True
         :type load_into_memory: bool
@@ -46,6 +46,7 @@ class MyDataset(Dataset):
         self.load_into_memory = load_into_memory
         self.key_features = key_features
         self.key_class = key_class
+
         if self.load_into_memory:
             for i, a_file in enumerate(self.files):
                 self.files[i] = self._load_file(a_file)
